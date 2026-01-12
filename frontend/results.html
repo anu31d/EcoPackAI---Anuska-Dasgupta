@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations | EcoPackAI</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>🌱 EcoPackAI</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="product.html">Product Input</a>
+        <a href="analytics.html">Analytics</a>
+    </nav>
+</header>
+
+<main>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h2>📋 Material Recommendations</h2>
+        <button id="viewAnalyticsBtn" onclick="window.location.href='analytics.html'" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin: 10px;">
+            📊 View Analytics Dashboard
+        </button>
+    </div>
+
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Material</th>
+                <th>Cost</th>
+                <th>CO₂ Impact</th>
+                <th>Sustainability Score</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</main>
+
+<script src="js/results.js"></script>
+</body>
+</html>

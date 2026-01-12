@@ -1,0 +1,28 @@
+# Data Quality Test Report
+
+Pytest output:
+
+F
+=================================== FAILURES ===================================
+________________________ test_required_columns_present _________________________
+
+    def test_required_columns_present():
+        df = load_df()
+        required = ["MaterialID","Material","Cost_per_kg","CO2_per_kg"]
+        for c in required:
+>           assert c in df.columns, f"Missing required column: {c}"
+E           AssertionError: Missing required column: MaterialID
+E           assert 'MaterialID' in Index(['Material ID', 'Packaging Type', 'Material Type',\n       'Suitable Product Categories', 'Recommended Packaging ...units)',\n       'Total Material Weight (tons)',\n       'Supplier Sustainability Compliance (%)'],\n      dtype='object')
+E            +  where Index(['Material ID', 'Packaging Type', 'Material Type',\n       'Suitable Product Categories', 'Recommended Packaging ...units)',\n       'Total Material Weight (tons)',\n       'Supplier Sustainability Compliance (%)'],\n      dtype='object') =     Material ID  ... Supplier Sustainability Compliance (%)\n0      MAT_0001  ...                                   85....                              90.0\n403    MAT_0404  ...                                   88.0\n\n[404 rows x 23 columns].columns
+
+ecopackai/tests/test_data_quality.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED ecopackai/tests/test_data_quality.py::test_required_columns_present - ...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 1.41s
+
+
+Tested file: /content/ecopackai/data/processed/cleaned_integrated_materials.csv
+
+Notes:
+- Fix any failing tests and re-run `pytest`.
