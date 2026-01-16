@@ -159,56 +159,7 @@ EcoPackAI/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Python 3.8+
-- pip (Python package manager)
-- Virtual environment (recommended)
-- Docker (optional, for containerized deployment)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/EcoPackAI.git
-   cd EcoPackAI/project
-   ```
-
-2. **Set up virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r environments/requirements.txt
-   ```
-
-4. **Initialize database**
-   ```bash
-   python init_db.py
-   ```
-
-5. **Run the application**
-   ```bash
-   python backend/app.py
-   ```
-
-6. **Access the application**
-   - Open your browser and navigate to `http://localhost:5000`
-
-### Docker Deployment
-
-```bash
-cd project/environments
-docker-compose up --build
-```
-
----
-
-## 📊 ML Pipeline Workflow
+##  ML Pipeline Workflow
 
 1. **Data Ingestion** → Load raw packaging material data
 2. **Preprocessing** → Clean, transform, and engineer features
@@ -257,12 +208,6 @@ Comprehensive documentation is available in the `/project/docs` directory:
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our contributing guidelines and code of conduct.
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -271,7 +216,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Authors
 
-EcoPackAI Development Team
+Anuska Dasgupta
 
 ---
 
