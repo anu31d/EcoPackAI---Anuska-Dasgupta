@@ -148,6 +148,17 @@ credentials.json
 *.key
 *.pem
 
+# Protection System (DO NOT COMMIT)
+.env_key
+**/protection/.env_key
+project/protection/.env_key
+**/.protected_config
+project/config/.protected_config
+ECOPACK_KEY
+.ecopack_*
+_instance_id
+_fingerprint
+
 # Application specific
 project/outputs/*.csv
 !project/outputs/material_rankings.csv

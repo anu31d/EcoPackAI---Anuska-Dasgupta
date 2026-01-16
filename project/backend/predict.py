@@ -4,13 +4,29 @@ import pandas as pd
 import os
 import sys
 import yaml
+import hashlib
+import base64
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-# Allowed values for validation
-VALID_CATEGORIES = ["Food", "Electronics", "Cosmetics", "Pharmacy"]
-VALID_SHIPPING = ["Air", "Road", "Sea"]
+# Protection imports
+try:
+    from protection.protection import _P, require_valid_environment, _INSTANCE_ID
+    from protection.obfuscate_utils import _O, _calculate_score, _apply_weights
+    _PROTECTED_MODE = True
+except ImportError:
+    _PROTECTED_MODE = False
+    _INSTANCE_ID = "fallback"
+    print("⚠ Running without protection layer")
+
+# Obfuscated validation data
+_VC = base64.b85encode(str(["Food", "Electronics", "Cosmetics", "Pharmacy"]).encode()).decode()
+_VS = base64.b85encode(str(["Air", "Road", "Sea"]).encode()).decode()
+
+# Allowed values for validation (obfuscated)
+VALID_CATEGORIES = eval(base64.b85decode(_VC.encode()).decode())
+VALID_SHIPPING = eval(base64.b85decode(_VS.encode()).decode())
 
 # Load ML models and data
 MODEL_DIR = os.path.join(os.path.dirname(__file__), '..', 'ml', 'models')
@@ -47,14 +63,22 @@ def calculate_sustainability_score(biodegradability, recyclability, is_renewable
     
     All inputs should be on 0-100 scale.
     """
-    renewability_score = 80 if is_renewable else 20  # Bio-based materials get higher score
+    # Obfuscated calculation
+    if _PROTECTED_MODE:
+        _params = {
+            'biodegradability': biodegradability,
+            'recyclability': recyclability,
+            'renewable': is_renewable
+        }
+        return _calculate_score(_params)
     
+    # Fallback
+    renewability_score = 80 if is_renewable else 20
     sustainability_score = (
-        biodegradability * 0.40 +      # 40% weight
-        recyclability * 0.40 +          # 40% weight
-        renewability_score * 0.20       # 20% weight
+        biodegradability * 0.40 +
+        recyclability * 0.40 +
+        renewability_score * 0.20
     )
-    
     return round(max(0, min(100, sustainability_score)), 2)
 
 

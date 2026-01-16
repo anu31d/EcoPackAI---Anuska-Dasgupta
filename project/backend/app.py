@@ -5,6 +5,24 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
 import logging
+import sys
+import os
+
+# ------------------------
+# Protection System
+# ------------------------
+try:
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+    from protection.protection import _P, _INSTANCE_ID, _CONTEXT_HASH, initialize_protection
+    from protection.obfuscate_utils import _O
+    _PROTECTED = True
+    if not initialize_protection():
+        logging.warning("Environment validation notice - running in limited mode")
+except ImportError as e:
+    logging.error(f"Protection modules not found: {e}")
+    _PROTECTED = False
+    _INSTANCE_ID = "unprotected"
 
 # ------------------------
 # Logging Configuration
@@ -62,6 +80,13 @@ cache.init_app(app)
 # Temporarily disable API key authentication for development
 @app.before_request
 def check_api_key():
+    # Environment validation check
+    if _PROTECTED:
+        try:
+            if not _P.verify(False):
+                logging.warning("Environment validation notice")
+        except Exception as e:
+            logging.warning(f"Validation check: {e}")
     pass
 
 # ------------------------
