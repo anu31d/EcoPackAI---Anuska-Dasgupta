@@ -208,6 +208,35 @@ Comprehensive documentation is available in the `/project/docs` directory:
 
 ---
 
+## 🍴 Fork This Repository
+
+Want to use EcoPackAI for your own projects? Here's how:
+
+1. Click the **Fork** button at the top right of this page
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/EcoPack-AI.git
+   cd EcoPack-AI
+   ```
+3. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+4. Install dependencies:
+   ```bash
+   pip install -r project/environments/requirements.txt
+   ```
+5. Run the application:
+   ```bash
+   cd project
+   python backend/app.py
+   ```
+
+The application will be available at `http://localhost:5000`
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
